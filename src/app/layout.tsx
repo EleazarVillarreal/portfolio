@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Permanent_Marker, Rubik_Mono_One, Space_Mono } from 'next/font/google'
-import { Logo } from '@/components/logo'
+import { NavBar } from '@/components/nav-bar'
 import './globals.css'
 
 const spaceMono = Space_Mono({
@@ -37,9 +37,7 @@ export default function RootLayout({
       className={`${spaceMono.variable} ${permanentMarker.variable} ${rubikMonoOne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-dark text-foreground font-mono">
-        <header className="fixed inset-x-0 top-0 z-50 flex items-center border-b border-pink/20 bg-dark/85 px-12 py-6 backdrop-blur-xl">
-          <Logo />
-        </header>
+        <NavBar />
         <div className="flex min-h-full flex-1 flex-col pt-28">{children}</div>
       </body>
     </html>
