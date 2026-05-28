@@ -1,0 +1,77 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="ghost-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Cyan chromatic offset behind -->
+  <g transform="translate(3,2)" opacity="0.7">
+    <path d="M 55 90
+             Q 55 50 100 48
+             Q 145 50 145 90
+             L 145 145
+             Q 140 152 130 145
+             Q 122 138 115 148
+             Q 108 158 100 148
+             Q 92 138 85 148
+             Q 78 158 70 145
+             Q 60 138 55 145
+             Z"
+          fill="none" stroke="#00F5FF" stroke-width="3.5"
+          stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+
+  <!-- Main pink ghost body -->
+  <g filter="url(#ghost-glow)">
+    <path d="M 55 90
+             Q 55 50 100 48
+             Q 145 50 145 90
+             L 145 145
+             Q 140 152 130 145
+             Q 122 138 115 148
+             Q 108 158 100 148
+             Q 92 138 85 148
+             Q 78 158 70 145
+             Q 60 138 55 145
+             Z"
+          fill="#0a0a14" stroke="#FF1EAD" stroke-width="3.5"
+          stroke-linejoin="round" stroke-linecap="round"/>
+
+    <!-- X eye (left) -->
+    <g stroke="#FF1EAD" stroke-width="3.5" stroke-linecap="round">
+      <line x1="73" y1="80" x2="90" y2="97"/>
+      <line x1="90" y1="80" x2="73" y2="97"/>
+    </g>
+
+    <!-- Spiral eye (right, cyan) -->
+    <path d="M 122 90
+             Q 113 90 115 100
+             Q 120 106 128 101
+             Q 134 94 126 88
+             Q 115 84 110 96
+             Q 108 108 122 112"
+          fill="none" stroke="#00F5FF" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Mouth — small "o" of surprise -->
+    <ellipse cx="100" cy="125" rx="5" ry="7" fill="#FF1EAD"/>
+  </g>
+
+  <!-- Separated drips falling below the body -->
+  <g fill="#FF1EAD">
+    <ellipse cx="70" cy="170" rx="2" ry="3" opacity="0.85"/>
+    <ellipse cx="100" cy="178" rx="2.5" ry="3.5" opacity="0.85"/>
+    <ellipse cx="130" cy="172" rx="2" ry="2.5" opacity="0.85"/>
+    <circle cx="85" cy="165" r="1" opacity="0.6"/>
+    <circle cx="115" cy="167" r="1" opacity="0.6"/>
+  </g>
+
+  <!-- Scatter dots -->
+  <circle cx="38" cy="60" r="1.5" fill="#00F5FF" opacity="0.7"/>
+  <circle cx="165" cy="120" r="1" fill="#FF1EAD" opacity="0.6"/>
+  <circle cx="30" cy="115" r="1" fill="#FFE600" opacity="0.6"/>
+</svg>
