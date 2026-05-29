@@ -1,9 +1,13 @@
+import { HeroSection } from '@/components/hero-section'
+
 export default function Home() {
   return (
-    <main className="flex min-h-full flex-1 items-center justify-center">
-      <h1 className="text-3xl font-semibold tracking-tight">
-        Portfolio Project
-      </h1>
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="flex min-h-full w-full min-w-0 flex-1 flex-col overflow-x-hidden"
+    >
+      <HeroSection />
     </main>
   )
 }

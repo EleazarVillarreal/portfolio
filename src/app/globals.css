@@ -28,8 +28,233 @@
   --font-marker: var(--font-permanent-marker), cursive;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--color-dark);
   color: var(--color-foreground);
   font-family: var(--font-mono);
+}
+
+/* Global focus ring — matches the reference for all tabbable elements */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+/* Skip link — visible only on keyboard focus */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 10000;
+  background: var(--cyan);
+  color: #000;
+  padding: 0.6rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: top 0.15s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+}
+
+/* Custom cursor — hide system cursor only once JS confirms it is running,
+   and only for fine pointers. Keyboard/touch always keep a real cursor. */
+@media (pointer: fine) {
+  body.has-custom-cursor {
+    cursor: none;
+  }
+}
+
+#cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--pink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.15s,
+    height 0.15s,
+    background 0.15s;
+  display: none;
+}
+
+body.has-custom-cursor #cursor {
+  display: block;
+}
+
+#cursor.hovered {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 30, 173, 0.2);
+}
+
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  filter: drop-shadow(0 0 5px var(--pink)) drop-shadow(0 0 11px var(--pink))
+    drop-shadow(0 0 22px rgba(255, 30, 173, 0.5));
+  transition:
+    transform 0.2s,
+    filter 0.2s;
+  animation: logoGlowPulse 4.5s ease-in-out infinite;
+}
+
+.logo-link:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 6px var(--pink)) drop-shadow(0 0 16px var(--pink))
+    drop-shadow(0 0 32px rgba(255, 30, 173, 0.65));
+}
+
+.logo-float {
+  animation: logoFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes logoGlowPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px var(--pink)) drop-shadow(0 0 11px var(--pink))
+      drop-shadow(0 0 22px rgba(255, 30, 173, 0.5));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 6px var(--pink)) drop-shadow(0 0 14px var(--pink))
+      drop-shadow(0 0 28px rgba(255, 30, 173, 0.6));
+  }
+}
+
+.glitch-wrapper {
+  display: block;
+}
+
+.glitch-name {
+  color: #ffffff;
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 8vw, 6rem);
+  line-height: 0.95;
+  position: relative;
+}
+
+.glitch-name::before,
+.glitch-name::after {
+  content: attr(data-text);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.glitch-name::before {
+  animation: glitch1 3s infinite;
+  clip-path: polygon(0 30%, 100% 30%, 100% 60%, 0 60%);
+  color: var(--pink);
+}
+
+.glitch-name::after {
+  animation: glitch2 3s infinite;
+  clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+  color: var(--cyan);
+}
+
+.glitch-name.title-line {
+  -webkit-text-stroke: 1px var(--pink);
+  color: var(--pink);
+  text-shadow: 0 0 30px rgba(255, 30, 173, 0.5);
+}
+
+.glitch-name.title-line::before {
+  color: var(--cyan);
+}
+
+.glitch-name.title-line::after {
+  color: #ffffff;
+}
+
+@keyframes glitch1 {
+  0%,
+  90%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  91% {
+    opacity: 0.8;
+    transform: translateX(-4px);
+  }
+
+  93% {
+    opacity: 0.8;
+    transform: translateX(4px);
+  }
+
+  95% {
+    opacity: 0.8;
+    transform: translateX(-2px);
+  }
+
+  97% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glitch2 {
+  0%,
+  85%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  86% {
+    opacity: 0.8;
+    transform: translateX(4px);
+  }
+
+  88% {
+    opacity: 0.8;
+    transform: translateX(-4px);
+  }
+
+  90% {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch-name::before,
+  .glitch-name::after,
+  .logo-link,
+  .logo-float {
+    animation: none;
+  }
 }

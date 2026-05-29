@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Permanent_Marker, Rubik_Mono_One, Space_Mono } from 'next/font/google'
+import { CustomCursor } from '@/components/custom-cursor'
 import { NavBar } from '@/components/nav-bar'
 import './globals.css'
 
@@ -37,8 +38,14 @@ export default function RootLayout({
       className={`${spaceMono.variable} ${permanentMarker.variable} ${rubikMonoOne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-dark text-foreground font-mono">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <CustomCursor />
         <NavBar />
-        <div className="flex min-h-full flex-1 flex-col pt-28">{children}</div>
+        <div className="flex min-h-full min-w-0 flex-1 flex-col pt-20 sm:pt-24 md:pt-28">
+          {children}
+        </div>
       </body>
     </html>
   )
