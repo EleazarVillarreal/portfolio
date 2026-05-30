@@ -1,3 +1,5 @@
+import { HeroTerminal } from '@/components/hero-terminal'
+
 const graffitiTags = [
   {
     text: 'CODE',
@@ -42,29 +44,38 @@ export function HeroSection() {
         </div>
       ))}
 
-      <div className="relative z-10 w-full min-w-0 max-w-[520px]">
-        <div className="mb-6 flex items-center gap-3 text-[0.65rem] tracking-[0.25em] text-cyan uppercase sm:gap-4 sm:text-[0.7rem] sm:tracking-[0.4em] before:h-px before:w-8 before:shrink-0 before:bg-cyan before:content-[''] sm:before:w-10">
-          Software Developer
+      <div className="relative z-10 flex w-full items-center justify-between gap-12">
+        <div
+          className="hero-left w-full min-w-0 max-w-[520px]"
+          data-rm-target="hero"
+        >
+          <div className="mb-6 flex items-center gap-3 text-[0.65rem] tracking-[0.25em] text-cyan uppercase sm:gap-4 sm:text-[0.7rem] sm:tracking-[0.4em] before:h-px before:w-8 before:shrink-0 before:bg-cyan before:content-[''] sm:before:w-10">
+            Software Developer
+          </div>
+
+          <h1 className="mb-6">
+            <span className="glitch-wrapper">
+              <span className="glitch-name" data-text="Eleazar">
+                Eleazar
+              </span>
+              <span className="glitch-name title-line" data-text="Villarreal">
+                Villarreal
+              </span>
+            </span>
+          </h1>
+
+          <p className="w-full border-l-[3px] border-pink pl-4 text-[0.8rem] leading-[1.8] text-muted sm:max-w-[500px] sm:pl-6 sm:text-[0.85rem]">
+            Senior software developer with over a decade of experience shipping
+            production React, Next.js, and TypeScript across healthcare, retail,
+            and fintech. Accessible, performant interfaces are the baseline. The
+            stack goes as deep as the product needs. WCAG compliance isn&apos;t an
+            afterthought in my work, it&apos;s in the first commit.
+          </p>
         </div>
 
-        <h1 className="mb-6">
-          <span className="glitch-wrapper">
-            <span className="glitch-name" data-text="Eleazar">
-              Eleazar
-            </span>
-            <span className="glitch-name title-line" data-text="Villarreal">
-              Villarreal
-            </span>
-          </span>
-        </h1>
-
-        <p className="w-full border-l-[3px] border-pink pl-4 text-[0.8rem] leading-[1.8] text-muted sm:max-w-[500px] sm:pl-6 sm:text-[0.85rem]">
-          Senior software developer with over a decade of experience shipping
-          production React, Next.js, and TypeScript across healthcare, retail,
-          and fintech. Accessible, performant interfaces are the baseline. The
-          stack goes as deep as the product needs. WCAG compliance isn&apos;t an
-          afterthought in my work, it&apos;s in the first commit.
-        </p>
+        <div className="hero-right hidden w-[480px] shrink-0 items-center justify-end min-[920px]:flex">
+          <HeroTerminal />
+        </div>
       </div>
     </section>
   )

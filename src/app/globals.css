@@ -257,4 +257,544 @@ body.has-custom-cursor #cursor {
   .logo-float {
     animation: none;
   }
+
+  .tt-cursor {
+    animation: none !important;
+  }
+
+  .tt-head,
+  .tt-sub {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ===== Hero terminal ===== */
+
+.tt-dot {
+  font-family: var(--font-mono);
+}
+
+.tt-dot::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.tt-dot::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tt-dot:hover::after {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.d-r::before {
+  background: #ff5f57;
+}
+
+.d-y::before {
+  background: #febc2e;
+}
+
+.d-g::before {
+  background: #28c840;
+}
+
+.d-r::after {
+  content: '\00d7';
+}
+
+.d-y::after {
+  content: '\2013';
+}
+
+.d-g::after {
+  content: '\002b';
+}
+
+.tt-g {
+  color: #00e676;
+}
+
+.tt-c {
+  color: var(--cyan);
+}
+
+.tt-y {
+  color: var(--yellow);
+}
+
+.tt-dim {
+  color: #7d7d7d;
+}
+
+.tt-link {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 245, 255, 0.35);
+  overflow-wrap: anywhere;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.tt-link:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.tt-link:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+.tt-link svg {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.35rem;
+  margin-bottom: 0.1rem;
+  fill: currentColor;
+}
+
+.tt-head {
+  font-family: var(--font-marker);
+  line-height: 1.05;
+  margin: 0.1rem 0 0.5rem;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.tt-head.show {
+  animation: ttIn 0.45s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.tt-sub {
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.tt-sub.show {
+  animation: ttIn 0.4s ease forwards;
+}
+
+@keyframes ttIn {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(4px);
+  }
+
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.head-pink {
+  color: transparent;
+  -webkit-text-stroke: 1.4px var(--pink);
+  text-shadow: 0 0 16px rgba(255, 30, 173, 0.3);
+}
+
+.head-cyan {
+  color: transparent;
+  -webkit-text-stroke: 1.4px var(--cyan);
+  text-shadow: 0 0 16px rgba(0, 245, 255, 0.3);
+}
+
+.head-fill-pink {
+  color: var(--pink);
+  text-shadow: 0 0 20px rgba(255, 30, 173, 0.5);
+}
+
+.head-fill-cyan {
+  color: var(--cyan);
+  text-shadow: 0 0 18px rgba(0, 245, 255, 0.4);
+}
+
+.head-yellow {
+  color: var(--yellow);
+  text-shadow: 0 0 16px rgba(255, 230, 0, 0.35);
+}
+
+.tt-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--cyan);
+  vertical-align: text-bottom;
+  animation: ttBlink 0.9s step-end infinite;
+}
+
+@keyframes ttBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ===== rm easter egg ===== */
+
+@keyframes rmJitter {
+  0%,
+  100% {
+    transform: translate(0, 0) skewX(0);
+    filter: none;
+  }
+
+  10% {
+    transform: translate(-6px, 1px) skewX(-0.6deg);
+    filter: hue-rotate(15deg) contrast(1.5) saturate(1.4);
+  }
+
+  22% {
+    transform: translate(7px, -3px) skewX(0.8deg);
+    filter: hue-rotate(-25deg) contrast(0.7) saturate(2);
+  }
+
+  34% {
+    transform: translate(-4px, 3px) skewX(0);
+    filter: saturate(3) brightness(1.15);
+  }
+
+  46% {
+    transform: translate(8px, -1px) skewX(-1deg);
+    filter: invert(0.08) hue-rotate(40deg);
+  }
+
+  58% {
+    transform: translate(-9px, 2px) skewX(0.4deg);
+    filter: hue-rotate(-60deg) contrast(1.8);
+  }
+
+  70% {
+    transform: translate(5px, -4px) skewX(0);
+    filter: saturate(0.4) brightness(1.3);
+  }
+
+  82% {
+    transform: translate(-3px, 3px) skewX(1.2deg);
+    filter: hue-rotate(90deg) contrast(1.3);
+  }
+
+  94% {
+    transform: translate(2px, -2px) skewX(-0.3deg);
+    filter: none;
+  }
+}
+
+body.rm-jitter {
+  animation: rmJitter 0.12s steps(2) infinite;
+}
+
+@keyframes rmChroma {
+  0%,
+  100% {
+    text-shadow:
+      -2px 0 var(--pink),
+      2px 0 var(--cyan);
+  }
+
+  25% {
+    text-shadow:
+      -4px 0 var(--pink),
+      4px 0 var(--cyan),
+      0 0 8px rgba(255, 30, 173, 0.3);
+  }
+
+  50% {
+    text-shadow:
+      3px 0 var(--cyan),
+      -3px 0 var(--pink);
+  }
+
+  75% {
+    text-shadow:
+      -6px 1px var(--pink),
+      5px -1px var(--cyan);
+  }
+}
+
+body.rm-jitter *:not(.rm-deleting) {
+  animation: rmChroma 0.18s steps(3) infinite;
+}
+
+body.rm-jitter::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 80000;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 30, 173, 0.08) 0 1px,
+      rgba(0, 245, 255, 0.08) 2px 3px
+    ),
+    repeating-linear-gradient(0deg, transparent 0 4px, rgba(0, 0, 0, 0.25) 4px 6px);
+  animation: rmScan 0.18s steps(4) infinite;
+}
+
+@keyframes rmScan {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+body.rm-jitter::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 80001;
+  pointer-events: none;
+  background: linear-gradient(rgba(0, 245, 255, 0.12), rgba(255, 30, 173, 0.12));
+  mix-blend-mode: difference;
+  animation: rmSlice 0.35s steps(1) infinite;
+}
+
+@keyframes rmSlice {
+  0% {
+    clip-path: inset(10% 0 80% 0);
+    transform: translateX(-12px);
+  }
+
+  20% {
+    clip-path: inset(45% 0 40% 0);
+    transform: translateX(10px);
+  }
+
+  40% {
+    clip-path: inset(70% 0 15% 0);
+    transform: translateX(-6px);
+  }
+
+  60% {
+    clip-path: inset(25% 0 65% 0);
+    transform: translateX(14px);
+  }
+
+  80% {
+    clip-path: inset(55% 0 30% 0);
+    transform: translateX(-4px);
+  }
+
+  100% {
+    clip-path: inset(5% 0 85% 0);
+    transform: translateX(8px);
+  }
+}
+
+@keyframes rmMark {
+  0% {
+    background: rgba(255, 30, 173, 0);
+    box-shadow: none;
+  }
+
+  100% {
+    background: rgba(255, 30, 173, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(255, 95, 87, 0.8);
+  }
+}
+
+.rm-target {
+  animation: rmMark 0.18s forwards;
+  position: relative;
+}
+
+.rm-target::after {
+  content: 'rm: deleting…';
+  position: absolute;
+  top: 0.4rem;
+  right: 0.6rem;
+  z-index: 5;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: #ff5f57;
+  text-shadow: 0 0 8px rgba(255, 95, 87, 0.6);
+}
+
+@keyframes rmWipe {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: none;
+    text-shadow: none;
+  }
+
+  15% {
+    opacity: 1;
+    transform: translateX(-8px) scale(1) skewX(-3deg);
+    filter: saturate(2);
+    text-shadow:
+      -6px 0 var(--pink),
+      6px 0 var(--cyan);
+  }
+
+  35% {
+    opacity: 0.9;
+    transform: translateX(6px) scale(1.01) skewX(4deg);
+    filter: blur(1px) saturate(3) hue-rotate(20deg);
+    text-shadow:
+      -8px 0 var(--pink),
+      8px 0 var(--cyan);
+  }
+
+  55% {
+    opacity: 0.6;
+    transform: translateX(-4px) scale(0.99) skewX(-6deg);
+    filter: blur(2px) hue-rotate(-30deg);
+    text-shadow:
+      -10px 1px var(--pink),
+      10px -1px var(--cyan);
+  }
+
+  75% {
+    opacity: 0.3;
+    transform: translateX(50px) scale(0.97) skewX(8deg);
+    filter: blur(4px) hue-rotate(60deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(140px) scale(0.88) skewX(16deg);
+    filter: blur(12px);
+  }
+}
+
+.rm-deleting {
+  animation: rmWipe 0.55s cubic-bezier(0.6, 0, 0.5, 1) forwards;
+  pointer-events: none;
+}
+
+.rm-void {
+  position: fixed;
+  inset: 0;
+  z-index: 90030;
+  background: #000;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: #cfcfcf;
+  transition: opacity 0.5s ease;
+}
+
+.rm-void.on {
+  opacity: 1;
+}
+
+.rm-void .vim-body {
+  flex: 1;
+  padding: 1.2rem 1.5rem;
+  overflow: hidden;
+}
+
+.rm-void .vim-body .warn {
+  color: var(--yellow);
+  font-weight: 700;
+}
+
+.rm-void .vim-body .err {
+  color: #ff5f57;
+}
+
+.rm-void .vim-body .dim {
+  color: #777;
+}
+
+.rm-void .vim-body .ok {
+  color: var(--cyan);
+}
+
+.rm-void .vim-body .label {
+  color: var(--pink);
+}
+
+.rm-void .vim-prompt {
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.rm-void .vim-menu {
+  margin: 0.8rem 0 0.8rem 1.5rem;
+}
+
+.rm-void .vim-menu .opt {
+  color: var(--pink);
+  font-weight: 700;
+  margin-right: 0.3rem;
+}
+
+.rm-void .vim-menu .blink {
+  display: inline-block;
+  width: 9px;
+  height: 1.1em;
+  background: #cfcfcf;
+  vertical-align: text-bottom;
+  margin-left: 4px;
+  animation: ttBlink 0.9s step-end infinite;
+}
+
+.rm-void .vim-status {
+  background: var(--cyan);
+  color: #000;
+  padding: 0.2rem 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rm-void .vim-cmdline {
+  background: #000;
+  color: #ff5f57;
+  padding: 0.2rem 1rem;
+  font-size: 0.72rem;
+  border-top: 1px solid #222;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.rm-jitter {
+    animation: none !important;
+  }
+
+  body.rm-jitter::before,
+  body.rm-jitter::after {
+    animation: none !important;
+    display: none !important;
+  }
+
+  body.rm-jitter *:not(.rm-deleting) {
+    animation: none !important;
+  }
+
+  .rm-deleting {
+    animation: none !important;
+    opacity: 0 !important;
+  }
 }

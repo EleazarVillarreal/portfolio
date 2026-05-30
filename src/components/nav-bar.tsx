@@ -8,7 +8,10 @@ const navItems = [
 
 export function NavBar() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-pink/20 bg-dark/85 backdrop-blur-xl">
+    <header
+      className="fixed inset-x-0 top-0 z-50 border-b border-pink/20 bg-dark/85 backdrop-blur-xl"
+      data-rm-target="nav"
+    >
       <nav
         aria-label="Primary"
         className="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 sm:py-6 md:px-12"
