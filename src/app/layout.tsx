@@ -38,7 +38,10 @@ export default function RootLayout({
       className={`${spaceMono.variable} ${permanentMarker.variable} ${rubikMonoOne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-dark text-foreground font-mono">
-        <a href="#main-content" className="skip-link">
+        <a
+          href="#main-content"
+          className="absolute left-4 -top-12 z-10000 bg-cyan px-4 py-[0.6rem] font-mono text-xs tracking-widest text-black uppercase no-underline transition-[top] duration-150 focus:top-4 focus:outline-2 focus:outline-offset-2 focus:outline-pink"
+        >
           Skip to main content
         </a>
         <CustomCursor />

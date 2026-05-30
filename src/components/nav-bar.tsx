@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Logo } from '@/components/logo'
 
 const navItems = [
@@ -16,7 +17,13 @@ export function NavBar() {
         aria-label="Primary"
         className="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 sm:py-6 md:px-12"
       >
-        <Logo className="shrink-0" />
+        <Link
+          href="/"
+          aria-label="Eleazar Villarreal — home"
+          className="inline-flex shrink-0 items-center leading-0 transition-[transform,filter] duration-200 filter-[drop-shadow(0_0_5px_var(--pink))_drop-shadow(0_0_11px_var(--pink))_drop-shadow(0_0_22px_rgba(255,30,173,0.5))] animate-[logoGlowPulse_4.5s_ease-in-out_infinite] hover:scale-105 hover:filter-[drop-shadow(0_0_6px_var(--pink))_drop-shadow(0_0_16px_var(--pink))_drop-shadow(0_0_32px_rgba(255,30,173,0.65))] motion-reduce:animate-none"
+        >
+          <Logo />
+        </Link>
 
         <div className="flex shrink-0 gap-3 sm:gap-5 md:gap-10">
           {navItems.map((item) => (

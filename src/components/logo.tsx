@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 type LogoProps = {
   className?: string
@@ -7,19 +6,13 @@ type LogoProps = {
 
 export function Logo({ className }: LogoProps) {
   return (
-    <Link
-      href="/"
-      aria-label="Eleazar Villarreal — home"
-      className={`logo-link${className ? ` ${className}` : ''}`}
-    >
-      <Image
-        src="/ghost.svg"
-        alt=""
-        width={80}
-        height={80}
-        className="logo-float block h-14 w-14 md:h-20 md:w-20"
-        priority
-      />
-    </Link>
+    <Image
+      src="/ghost.svg"
+      alt=""
+      width={80}
+      height={80}
+      className={`block h-14 w-14 animate-[logoFloat_3.5s_ease-in-out_infinite] motion-reduce:animate-none md:h-20 md:w-20${className ? ` ${className}` : ''}`}
+      priority
+    />
   )
 }

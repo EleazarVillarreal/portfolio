@@ -45,29 +45,6 @@ body {
   outline-offset: 4px;
 }
 
-/* Skip link — visible only on keyboard focus */
-.skip-link {
-  position: absolute;
-  left: 1rem;
-  top: -3rem;
-  z-index: 10000;
-  background: var(--cyan);
-  color: #000;
-  padding: 0.6rem 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: top 0.15s;
-}
-
-.skip-link:focus {
-  top: 1rem;
-  outline: 2px solid var(--pink);
-  outline-offset: 2px;
-}
-
 /* Custom cursor — hide system cursor only once JS confirms it is running,
    and only for fine pointers. Keyboard/touch always keep a real cursor. */
 @media (pointer: fine) {
@@ -100,28 +77,6 @@ body.has-custom-cursor #cursor {
   width: 40px;
   height: 40px;
   background: rgba(255, 30, 173, 0.2);
-}
-
-.logo-link {
-  display: inline-flex;
-  align-items: center;
-  line-height: 0;
-  filter: drop-shadow(0 0 5px var(--pink)) drop-shadow(0 0 11px var(--pink))
-    drop-shadow(0 0 22px rgba(255, 30, 173, 0.5));
-  transition:
-    transform 0.2s,
-    filter 0.2s;
-  animation: logoGlowPulse 4.5s ease-in-out infinite;
-}
-
-.logo-link:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 0 6px var(--pink)) drop-shadow(0 0 16px var(--pink))
-    drop-shadow(0 0 32px rgba(255, 30, 173, 0.65));
-}
-
-.logo-float {
-  animation: logoFloat 3.5s ease-in-out infinite;
 }
 
 @keyframes logoFloat {
@@ -252,9 +207,7 @@ body.has-custom-cursor #cursor {
 
 @media (prefers-reduced-motion: reduce) {
   .glitch-name::before,
-  .glitch-name::after,
-  .logo-link,
-  .logo-float {
+  .glitch-name::after {
     animation: none;
   }
 
