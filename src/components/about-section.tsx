@@ -89,7 +89,7 @@ export function AboutSection() {
 
           <div className="space-y-4 text-[0.8rem] leading-[1.9] text-muted-foreground">
             <p>
-              I&apos;m a software developer based in Austin, TX with over a
+              I&apos;m a senior software developer based in Austin, TX with over a
               decade of experience building accessible, high-performance web
               applications across healthcare, retail, fintech, and e-commerce.
             </p>

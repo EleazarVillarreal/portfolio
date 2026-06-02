@@ -62,7 +62,7 @@ export function buildCommandOutput(command: TerminalCommand): TerminalLine[] {
         { type: 'head', text: 'SHIPPING', variant: 'head-cyan', size: '2.2rem' },
         {
           type: 'sub',
-          html: '<span class="tt-c">▸</span> Full-Stack Software Developer',
+          html: '<span class="tt-c">▸</span> Senior Software Developer',
         },
         {
           type: 'sub',
@@ -83,7 +83,7 @@ export function buildCommandOutput(command: TerminalCommand): TerminalLine[] {
         { type: 'head', text: 'THE STACK', variant: 'head-fill-cyan', size: '2.2rem' },
         {
           type: 'sub',
-          html: '<span class="tt-c">▸</span> React · Next.js · TypeScript · JavaScript',
+          html: '<span class="tt-c">▸</span> React · Next.js · TypeScript',
         },
         {
           type: 'sub',
@@ -91,7 +91,7 @@ export function buildCommandOutput(command: TerminalCommand): TerminalLine[] {
         },
         {
           type: 'sub',
-          html: '<span class="tt-c">▸</span> Tailwind · Sass · Material UI · Storybook',
+          html: '<span class="tt-c">▸</span> Tailwind · Material UI · Storybook',
         },
         {
           type: 'sub',
@@ -99,7 +99,7 @@ export function buildCommandOutput(command: TerminalCommand): TerminalLine[] {
         },
         {
           type: 'sub',
-          html: '<span class="tt-c">▸</span> Jest · RTL · WCAG · Design Systems',
+          html: '<span class="tt-c">▸</span> Jest · React Testing Library · Design Systems',
         },
       )
       break
