@@ -30,7 +30,7 @@ export function EmptyWorkState() {
         </p>
         <a
           href="mailto:EleazarVillarreal13@gmail.com"
-          className="inline-flex items-center gap-2 bg-pink px-5 py-3 text-xs font-bold tracking-[0.1em] text-black uppercase shadow-[4px_4px_0_var(--cyan)] transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--cyan)] motion-reduce:transform-none"
+          className="inline-flex items-center gap-2 bg-pink px-5 py-3 text-xs font-bold tracking-widest text-black uppercase shadow-[4px_4px_0_var(--cyan)] transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_var(--cyan)] motion-reduce:transform-none"
         >
           Start a conversation
           <span aria-hidden="true">-&gt;</span>

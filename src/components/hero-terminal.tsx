@@ -55,7 +55,7 @@ function renderLine(line: TerminalLine) {
       return (
         <div
           key={line.id}
-          className="mb-[0.1rem] [overflow-wrap:anywhere] whitespace-pre-wrap text-[#aaa] leading-[1.75]"
+          className="mb-[0.1rem] wrap-anywhere whitespace-pre-wrap text-[#aaa] leading-[1.75]"
         >
           <span className="text-pink">❯ </span>
           <span className="text-white">{line.command}</span>
@@ -75,7 +75,7 @@ function renderLine(line: TerminalLine) {
       return (
         <div
           key={line.id}
-          className={`tt-sub mb-[0.1rem] [overflow-wrap:anywhere] whitespace-pre-wrap text-[#aaa] leading-[1.75] ${
+          className={`tt-sub mb-[0.1rem] wrap-anywhere whitespace-pre-wrap text-[#aaa] leading-[1.75] ${
             line.visible ? 'show' : ''
           }`}
           dangerouslySetInnerHTML={{ __html: line.html }}
@@ -85,7 +85,7 @@ function renderLine(line: TerminalLine) {
       return (
         <div
           key={line.id}
-          className={`tt-sub mb-[0.1rem] [overflow-wrap:anywhere] whitespace-pre-wrap text-[#aaa] leading-[1.75] ${
+          className={`tt-sub mb-[0.1rem] wrap-anywhere whitespace-pre-wrap text-[#aaa] leading-[1.75] ${
             line.visible ? 'show' : ''
           }`}
         >
@@ -300,13 +300,27 @@ export function HeroTerminal() {
     window.setTimeout(() => inputRef.current?.focus(), 0)
   }
 
+  const closeVoid = useCallback(() => {
+    // Undo every side effect of the rm sequence so the page is fully restored.
+    document.body.classList.remove('rm-jitter')
+
+    RM_DELETE_TARGETS.forEach((target) => {
+      const element = document.querySelector<HTMLElement>(target.selector)
+      if (!element) return
+      element.classList.remove('rm-target', 'rm-deleting')
+      element.style.removeProperty('visibility')
+    })
+
+    setShowVoid(false)
+    setVoidDates(null)
+    setIsRmBusy(false)
+    setLines([])
+    window.setTimeout(() => inputRef.current?.focus(), 0)
+  }, [])
+
   return (
     <>
-      <div
-        className="relative w-[480px] max-w-[480px] shrink-0"
-        inert={showVoid}
-        aria-hidden={showVoid}
-      >
+      <div className="relative w-[480px] max-w-[480px] shrink-0" inert={showVoid}>
         {!isClosed ? (
           <div className="relative w-[480px] max-w-[480px] border border-cyan/20 bg-[#0a0a14] font-mono text-[0.74rem] shadow-[0_0_40px_rgba(0,245,255,0.05),inset_0_0_50px_rgba(0,0,0,0.5)]">
             <div className="relative flex items-center gap-[0.45rem] border-b border-white/5 bg-[#0f0f1e] px-[0.9rem] py-[0.55rem]">
@@ -340,7 +354,6 @@ export function HeroTerminal() {
                   : 'h-[340px] min-h-[340px] py-5'
               }`}
               inert={isMinimized}
-              aria-hidden={isMinimized}
             >
               <div
                 ref={outputRef}
@@ -385,7 +398,7 @@ export function HeroTerminal() {
                   <button
                     key={command}
                     type="button"
-                    className="cursor-pointer border border-cyan/30 bg-transparent px-2 py-[0.18rem] font-mono text-[0.5rem] tracking-[0.1em] text-cyan uppercase transition-all hover:bg-cyan hover:text-black focus-visible:bg-cyan focus-visible:text-black"
+                    className="cursor-pointer border border-cyan/30 bg-transparent px-2 py-[0.18rem] font-mono text-[0.5rem] tracking-widest text-cyan uppercase transition-all hover:bg-cyan hover:text-black focus-visible:bg-cyan focus-visible:text-black"
                     data-cmd={command}
                     onClick={() => runCommand(command)}
                   >
@@ -413,6 +426,7 @@ export function HeroTerminal() {
         active={showVoid}
         now={voidDates?.now ?? ''}
         before={voidDates?.before ?? ''}
+        onClose={closeVoid}
       />
     </>
   )

@@ -1,14 +1,23 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type KeyboardEvent } from 'react'
 
 type RmVoidOverlayProps = {
   active: boolean
   now: string
   before: string
+  onClose: () => void
 }
 
-export function RmVoidOverlay({ active, now, before }: RmVoidOverlayProps) {
+// Keys that dismiss the overlay — Escape plus the vim menu's quit/abort options.
+const QUIT_KEYS = ['Escape', 'q', 'Q', 'a', 'A']
+
+export function RmVoidOverlay({
+  active,
+  now,
+  before,
+  onClose,
+}: RmVoidOverlayProps) {
   const overlayRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -19,6 +28,40 @@ export function RmVoidOverlay({ active, now, before }: RmVoidOverlayProps) {
 
   if (!active) return null
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (QUIT_KEYS.includes(event.key)) {
+      event.preventDefault()
+      onClose()
+      return
+    }
+
+    if (event.key !== 'Tab') return
+
+    // Trap focus inside the dialog so keyboard users can't tab out into the
+    // (still-rendered) page behind the overlay.
+    const focusable = overlayRef.current?.querySelectorAll<HTMLElement>(
+      'a[href], button, input, [tabindex]:not([tabindex="-1"])',
+    )
+
+    if (!focusable || focusable.length === 0) {
+      event.preventDefault()
+      overlayRef.current?.focus()
+      return
+    }
+
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+    const activeElement = document.activeElement
+
+    if (event.shiftKey && (activeElement === first || activeElement === overlayRef.current)) {
+      event.preventDefault()
+      last.focus()
+    } else if (!event.shiftKey && activeElement === last) {
+      event.preventDefault()
+      first.focus()
+    }
+  }
+
   return (
     <div
       ref={overlayRef}
@@ -28,6 +71,7 @@ export function RmVoidOverlay({ active, now, before }: RmVoidOverlayProps) {
       aria-labelledby="rm-void-title"
       aria-describedby="rm-void-description"
       tabIndex={-1}
+      onKeyDown={handleKeyDown}
     >
       <div className="vim-body">
         <div id="rm-void-title" className="err">
@@ -116,8 +160,15 @@ export function RmVoidOverlay({ active, now, before }: RmVoidOverlayProps) {
         </span>
         <span>NORMAL</span>
       </div>
-      <div className="vim-cmdline">
-        E37: No write since last change (add ! to override)
+      <div className="vim-cmdline flex items-center justify-between gap-4">
+        <span>E37: No write since last change (add ! to override)</span>
+        <button
+          type="button"
+          onClick={onClose}
+          className="shrink-0 cursor-pointer border border-cyan/40 bg-transparent px-2 py-[0.05rem] font-mono text-[0.7rem] tracking-wide text-cyan transition-colors hover:bg-cyan hover:text-black focus-visible:bg-cyan focus-visible:text-black"
+        >
+          ESC<span className="sr-only"> to</span> quit
+        </button>
       </div>
     </div>
   )
