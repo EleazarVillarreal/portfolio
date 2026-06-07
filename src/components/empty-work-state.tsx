@@ -1,6 +1,8 @@
 export function EmptyWorkState() {
   return (
     <div
+      role="region"
+      aria-labelledby="work-empty-heading"
       aria-describedby="work-empty-description"
       className="relative overflow-hidden border border-pink/20 bg-surface p-8 sm:p-10"
     >
@@ -19,7 +21,10 @@ export function EmptyWorkState() {
         <p className="mb-3 text-[0.65rem] tracking-[0.35em] text-cyan uppercase">
           Selected work coming soon
         </p>
-        <h3 className="mb-4 font-display text-2xl leading-tight text-white sm:text-3xl">
+        <h3
+          id="work-empty-heading"
+          className="mb-4 font-display text-2xl leading-tight text-white sm:text-3xl"
+        >
           No selected work published yet.
         </h3>
         <p id="work-empty-description" className="mb-6 text-sm leading-7 text-muted">

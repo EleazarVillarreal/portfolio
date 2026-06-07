@@ -129,11 +129,24 @@ export function HeroTerminal() {
 
   const setOutput = useCallback(
     (nextLines: TerminalLine[], animate = true) => {
+      const reduceMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches
+
+      // Reveal everything at once for reduced-motion users (or when the caller
+      // opts out of animation) — no timed pop-in.
+      if (!animate || reduceMotion) {
+        setLines(
+          nextLines.map((line) =>
+            line.type === 'echo' ? line : { ...line, visible: true },
+          ),
+        )
+        return
+      }
+
       const prepared = withReveal(nextLines)
       setLines(prepared)
-      if (animate) {
-        revealLines(prepared, setLines)
-      }
+      revealLines(prepared, setLines)
     },
     [],
   )
@@ -417,7 +430,7 @@ export function HeroTerminal() {
             className="cursor-pointer border border-cyan/35 bg-transparent px-[1.1rem] py-[0.7rem] font-mono text-[0.7rem] tracking-[0.08em] text-cyan transition-all hover:bg-cyan hover:text-black focus-visible:bg-cyan focus-visible:text-black"
             onClick={reopenTerminal}
           >
-            ▸ reopen terminal
+            <span aria-hidden="true">▸ </span>reopen terminal
           </button>
         ) : null}
       </div>

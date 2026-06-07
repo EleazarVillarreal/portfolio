@@ -3,6 +3,7 @@ import { Permanent_Marker, Rubik_Mono_One, Space_Mono } from 'next/font/google'
 import { CustomCursor } from '@/components/custom-cursor'
 import { NavBar } from '@/components/nav-bar'
 import './globals.css'
+import { Footer } from '@/components/footer'
 
 const spaceMono = Space_Mono({
   variable: '--font-space-mono',
@@ -60,6 +61,7 @@ export default function RootLayout({
         <div className="flex min-h-full min-w-0 flex-1 flex-col pt-20 sm:pt-24 md:pt-28">
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   )

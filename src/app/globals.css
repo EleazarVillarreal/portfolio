@@ -21,7 +21,7 @@
   --color-success: #00e676;
   --color-muted: #a8a8a8;
   --color-muted-foreground: #777777;
-  --color-subtle: #555555;
+  --color-subtle: #8a8a8a;
 
   --font-mono: var(--font-space-mono), ui-monospace, monospace;
   --font-display: var(--font-rubik-mono-one), ui-monospace, monospace;
