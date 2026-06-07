@@ -1,10 +1,5 @@
 import { Logo } from '@/components/logo'
-
-const navItems = [
-  { href: '#work', label: 'Work' },
-  { href: '#about', label: 'About' },
-  { href: '#contact', label: 'Contact' },
-]
+import { NAV_ITEMS } from '@/data'
 
 export function NavBar() {
   return (
@@ -25,7 +20,7 @@ export function NavBar() {
         </a>
 
         <div className="flex shrink-0 gap-3 sm:gap-5 md:gap-10">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}

@@ -7,6 +7,20 @@
   --dark: #050508;
   --mid: #0d0d1a;
   --surface: #111122;
+
+  /* Status / signal colors */
+  --error: #ff5f57;
+  --success: #00e676;
+  --warning: #febc2e;
+  --dot-green: #28c840;
+
+  /* Terminal surfaces & text */
+  --terminal-bg: #0a0a14;
+  --terminal-elevated: #0f0f1e;
+  --terminal-fg: #aaaaaa;
+  --terminal-dim: #7d7d7d;
+  --terminal-placeholder: #9a9a9a;
+  --void-fg: #cfcfcf;
 }
 
 @theme inline {
@@ -18,10 +32,17 @@
   --color-surface: var(--surface);
   --color-background: var(--dark);
   --color-foreground: #ffffff;
-  --color-success: #00e676;
+  --color-error: var(--error);
+  --color-success: var(--success);
   --color-muted: #a8a8a8;
   --color-muted-foreground: #777777;
   --color-subtle: #8a8a8a;
+
+  --color-terminal-bg: var(--terminal-bg);
+  --color-terminal-elevated: var(--terminal-elevated);
+  --color-terminal-fg: var(--terminal-fg);
+  --color-terminal-dim: var(--terminal-dim);
+  --color-terminal-placeholder: var(--terminal-placeholder);
 
   --font-mono: var(--font-space-mono), ui-monospace, monospace;
   --font-display: var(--font-rubik-mono-one), ui-monospace, monospace;
@@ -258,15 +279,15 @@ body.has-custom-cursor #cursor {
 }
 
 .d-r::before {
-  background: #ff5f57;
+  background: var(--error);
 }
 
 .d-y::before {
-  background: #febc2e;
+  background: var(--warning);
 }
 
 .d-g::before {
-  background: #28c840;
+  background: var(--dot-green);
 }
 
 .d-r::after {
@@ -282,7 +303,7 @@ body.has-custom-cursor #cursor {
 }
 
 .tt-g {
-  color: #00e676;
+  color: var(--success);
 }
 
 .tt-c {
@@ -294,7 +315,7 @@ body.has-custom-cursor #cursor {
 }
 
 .tt-dim {
-  color: #7d7d7d;
+  color: var(--terminal-dim);
 }
 
 .tt-link {
@@ -594,7 +615,7 @@ body.rm-jitter::before {
   font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 0.1em;
-  color: #ff5f57;
+  color: var(--error);
   text-shadow: 0 0 8px rgba(255, 95, 87, 0.6);
 }
 
@@ -662,7 +683,7 @@ body.rm-jitter::before {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   line-height: 1.7;
-  color: #cfcfcf;
+  color: var(--void-fg);
   transition: opacity 0.5s ease;
 }
 
@@ -682,11 +703,11 @@ body.rm-jitter::before {
 }
 
 .rm-void .vim-body .err {
-  color: #ff5f57;
+  color: var(--error);
 }
 
 .rm-void .vim-body .dim {
-  color: #777;
+  color: var(--terminal-dim);
 }
 
 .rm-void .vim-body .ok {
@@ -716,7 +737,7 @@ body.rm-jitter::before {
   display: inline-block;
   width: 9px;
   height: 1.1em;
-  background: #cfcfcf;
+  background: var(--void-fg);
   vertical-align: text-bottom;
   margin-left: 4px;
   animation: ttBlink 0.9s step-end infinite;
@@ -735,7 +756,7 @@ body.rm-jitter::before {
 
 .rm-void .vim-cmdline {
   background: #000;
-  color: #ff5f57;
+  color: var(--error);
   padding: 0.2rem 1rem;
   font-size: 0.72rem;
   border-top: 1px solid #222;

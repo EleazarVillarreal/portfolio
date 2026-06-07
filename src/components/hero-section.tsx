@@ -1,4 +1,4 @@
-import { HeroTerminal } from '@/components/hero-terminal'
+import { HeroTerminal } from '@/components/terminal'
 
 const graffitiTags = [
   {

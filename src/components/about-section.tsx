@@ -1,23 +1,4 @@
-const profileDetails = [
-  { label: 'ROLE', value: 'Software Developer' },
-  { label: 'BASE', value: 'Austin, TX' },
-  { label: 'EXP', value: '10+ Years' },
-  { label: 'FOCUS', value: 'React.js · Next.js · TypeScript · Node.js' },
-] as const
-
-const skills = [
-  'React.js',
-  'Next.js',
-  'TypeScript',
-  'Node.js',
-  'GraphQL',
-  'React Native',
-  'Tailwind',
-  'Material UI',
-  'Storybook',
-  'WCAG',
-  'Design Systems',
-] as const
+import { PROFILE_DETAILS, SKILLS } from '@/data'
 
 export function AboutSection() {
   return (
@@ -45,7 +26,7 @@ export function AboutSection() {
             </div>
 
             <dl className="flex flex-col">
-              {profileDetails.map((detail) => (
+              {PROFILE_DETAILS.map((detail) => (
                 <div
                   key={detail.label}
                   className="flex items-center justify-between gap-4 border-b border-white/5 py-3 text-[0.7rem] last:border-b-0"
@@ -63,7 +44,7 @@ export function AboutSection() {
                 <dt className="flex items-center gap-2 text-[0.6rem] tracking-[0.2em] text-subtle uppercase">
                   <span
                     aria-hidden="true"
-                    className="h-[7px] w-[7px] rounded-full bg-success shadow-[0_0_8px_#00e676] animate-[pulse_2s_ease-in-out_infinite] motion-reduce:animate-none"
+                    className="h-[7px] w-[7px] rounded-full bg-success shadow-[0_0_8px_var(--success)] animate-[pulse_2s_ease-in-out_infinite] motion-reduce:animate-none"
                   />
                   STATUS
                 </dt>
@@ -109,7 +90,7 @@ export function AboutSection() {
           </div>
 
           <ul className="mt-8 flex flex-wrap gap-3" aria-label="Skills">
-            {skills.map((skill) => (
+            {SKILLS.map((skill) => (
               <li
                 key={skill}
                 className="border border-pink/25 bg-pink/10 px-4 py-2 text-[0.65rem] tracking-widest text-pink uppercase"

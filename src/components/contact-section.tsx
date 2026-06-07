@@ -1,4 +1,4 @@
-const contactEmail = 'EleazarVillarreal13@gmail.com'
+import { CONTACT_EMAIL } from '@/data'
 
 export function ContactSection() {
   return (
@@ -20,10 +20,10 @@ export function ContactSection() {
       </h2>
 
       <a
-        href={`mailto:${contactEmail}`}
+        href={`mailto:${CONTACT_EMAIL}`}
         className="inline-block max-w-full wrap-anywhere border-b border-cyan pb-1 text-base text-cyan transition-[text-shadow] duration-200 hover:[text-shadow:0_0_20px_var(--cyan)] sm:text-lg"
       >
-        {contactEmail}
+        {CONTACT_EMAIL}
       </a>
     </section>
   )
